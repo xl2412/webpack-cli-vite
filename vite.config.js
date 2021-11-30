@@ -13,7 +13,6 @@ export default ({
 
   let optimizeDeps = {};
 
-
   let alias = {}
 
   let proxy = {}

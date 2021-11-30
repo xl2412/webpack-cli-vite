@@ -72,11 +72,13 @@
 		"wp2vite": "^2.0.8"
 	},
 	"scripts": {
-		"start": "webpack serve --config build/webpack.dev.config.js --open",
-		"build": "yarn build:css && yarn build:prod",
-		"build:prod": "npx webpack --config build/webpack.prod.config.js",
+		"start": "cross-env API_ENV=dev webpack serve --config build/webpack.dev.config.js --open",
+		"build:prod": "cross-env API_ENV=prod npx webpack --config build/webpack.prod.config.js",
+		"build:pre": "cross-env API_ENV=pre npx webpack --config build/webpack.prod.config.js",
 		"build:css": "postcss src/css/styles.css -o src/css/output.css",
 		"watch:css": "postcss src/css/styles.css -o src/css/output.css -w",
+		"pre": "yarn build:css && yarn build:pre",
+		"build": "yarn build:css && yarn build:prod",
 		"dev": "concurrently \"yarn watch:css \" \"yarn start \"",
 		"lint": "eslint src --fix --ext .ts,.tsx ",
 		"vite-dev": "vite",

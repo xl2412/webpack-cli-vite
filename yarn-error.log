@@ -1,30 +1,25 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\xielu\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add mobx mobx-reac
+  C:\Program Files\nodejs\node.exe C:\Users\xielu\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js lint
 
 PATH: 
-  C:\Users\xielu\test1\node_modules\.bin;C:\Program Files (x86)\VMware\VMware Workstation\bin\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Users\xielu\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\Go\bin;C:\Program Files\Git\cmd;C:\Users\xielu\AppData\Roaming\npm;C:\Users\xielu\AppData\Local\Microsoft\WindowsApps;C:\Users\xielu\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\MongoDB\Server\4.4\bin;C:\Users\xielu\go\bin;C:\Program Files\Go\bin;C:\Users\xielu\AppData\Local\Programs\Microsoft VS Code\bin
+  C:\Users\xielu\Desktop\webpack-cli-vite\node_modules\.bin;C:\Program Files (x86)\VMware\VMware Workstation\bin\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Users\xielu\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\Go\bin;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Users\xielu\AppData\Local\Microsoft\WindowsApps;C:\Program Files\nodejs;C:\Users\xielu\AppData\Roaming\nvm;C:\Program Files\MongoDB\Server\4.4\bin;C:\Users\xielu\go\bin;C:\Program Files\Go\bin;C:\Users\xielu\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\xielu\AppData\Roaming\npm;
 
 Yarn version: 
   1.22.17
 
 Node version: 
-  14.16.1
+  16.13.0
 
 Platform: 
   win32 x64
 
 Trace: 
-  Error: https://registry.npmjs.org/mobx-reac: Not found
-      at Request.params.callback [as _callback] (C:\Users\xielu\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:67029:18)
-      at Request.self.callback (C:\Users\xielu\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140883:22)
-      at Request.emit (events.js:315:20)
-      at Request.<anonymous> (C:\Users\xielu\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141855:10)
-      at Request.emit (events.js:315:20)
-      at IncomingMessage.<anonymous> (C:\Users\xielu\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141777:12)
-      at Object.onceWrapper (events.js:421:28)
-      at IncomingMessage.emit (events.js:327:22)
-      at endReadableNT (internal/streams/readable.js:1327:12)
-      at processTicksAndRejections (internal/process/task_queues.js:80:21)
+  SyntaxError: C:\Users\xielu\Desktop\webpack-cli-vite\package.json: Unexpected token / in JSON at position 2827
+      at JSON.parse (<anonymous>)
+      at C:\Users\xielu\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (C:\Users\xielu\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:310:30)
+      at C:\Users\xielu\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:321:13
 
 npm manifest: 
   {
@@ -101,13 +96,15 @@ npm manifest:
   		"wp2vite": "^2.0.8"
   	},
   	"scripts": {
-  		"start": "webpack serve --config build/webpack.dev.config.js --open",
+  		"watch:css": "postcss src/css/styles.scss -o src/css/output.css -w",
+  		"build:css": "postcss src/css/styles.scss -o src/css/output.css",
+  		"start": "cross-env NODE_ENV=development webpack serve --config build/webpack.dev.config.js --open",
+  		"build:prod": "cross-env NODE_ENV=production npx webpack --config build/webpack.prod.config.js",
+  		"build:pre": "cross-env NODE_ENV=pre npx webpack --config build/webpack.prod.config.js",
+  //		"dev": "concurrently "yarn watch:css " "yarn start "",
+  		"pre": "yarn build:css && yarn build:pre",
   		"build": "yarn build:css && yarn build:prod",
-  		"build:prod": "npx webpack --config build/webpack.prod.config.js",
-  		"build:css": "postcss src/css/styles.css -o src/css/output.css",
-  		"watch:css": "postcss src/css/styles.css -o src/css/output.css -w",
-  		"dev": "concurrently \"yarn watch:css \" \"yarn start \"",
-  		"lint": "eslint src --fix --ext .ts,.tsx ",
+  		"lint": "eslint --fix src build --ext .ts,.tsx,.js",
   		"vite-dev": "vite",
   		"vite-start": "vite",
   		"preview": "vite preview",
@@ -116,6 +113,8 @@ npm manifest:
   	},
   	"dependencies": {
   		"antd": "^4.16.13",
+  		"mobx": "^6.3.7",
+  		"mobx-react": "^7.2.1",
   		"react": "^17.0.2",
   		"react-dom": "^17.0.2"
   	},
@@ -6116,6 +6115,23 @@ Lockfile:
     integrity sha1-2Rzv1i0UNsoPQWIOJRKI1CAJne8=
     dependencies:
       minimist "^1.2.5"
+  
+  mobx-react-lite@^3.2.0:
+    version "3.2.2"
+    resolved "https://registry.npmjs.org/mobx-react-lite/-/mobx-react-lite-3.2.2.tgz#cee5f09e6b0e4d2705d87276baf1de74d997fa33"
+    integrity sha512-FxJJMqmHcnQYOVVs2DdjNHioGlFsXF5/9VHztS9NAfIT3DYrxNZzVi119Zr/OmlWKkWNkAsssSNzPkqautfL4A==
+  
+  mobx-react@^7.2.1:
+    version "7.2.1"
+    resolved "https://registry.npmjs.org/mobx-react/-/mobx-react-7.2.1.tgz#e9d4c04dc63d05e1139ce773f5fee7a5b4cb7c78"
+    integrity sha512-LZS99KFLn75VWDXPdRJhILzVQ7qLcRjQbzkK+wVs0Qg4kWw5hOI2USp7tmu+9zP9KYsVBmKyx2k/8cTTBfsymw==
+    dependencies:
+      mobx-react-lite "^3.2.0"
+  
+  mobx@^6.3.7:
+    version "6.3.7"
+    resolved "https://registry.npmjs.org/mobx/-/mobx-6.3.7.tgz#9ed85561e86da45141134c8fa20cf5f9c7246c3d"
+    integrity sha512-X7yU7eOEyxIBk4gjIi2UIilwdw48gXh0kcZ5ex3Rc+COJsJmJ4SNpf42uYea3aUqb1hedTv5xzJrq5Q55p0P5g==
   
   modern-normalize@^1.1.0:
     version "1.1.0"
