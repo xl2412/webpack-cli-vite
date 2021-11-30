@@ -1,6 +1,5 @@
 {
   "presets": [
-    ["react-app"],
     ["@babel/preset-env"],
     ["@babel/preset-react", {"targets": {"node": "current"}}]
   ],
@@ -14,6 +13,7 @@
       "libraryName": "antd",
       "libraryDirectory": "es",
       "style": "css"
-    }]
+    }],
+    ["react-refresh/babel"]
   ]
 }
