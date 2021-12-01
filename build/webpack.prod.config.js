@@ -22,6 +22,7 @@ module.exports = merge(baseConfig, {
       minRatio: 0.8,
       deleteOriginalAssets: false,
     }),
+    //分析打包后每个包的大小
     new BundleAnalyzerPlugin(),
   ],
   performance: {

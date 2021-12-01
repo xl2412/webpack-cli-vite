@@ -82,9 +82,7 @@
 		"dev": "concurrently \"yarn watch:css \" \"yarn start \"",
 		"lint": "eslint src build --fix --ext .ts,.tsx,.js ",
 		"vite-dev": "vite",
-		"vite-start": "vite",
-		"preview": "vite preview",
-		"vite-build": "vite build"
+		"vite": "concurrently \"yarn watch:css \" \"yarn vite-dev \""
 	},
 	"dependencies": {
 		"antd": "^4.16.13",
@@ -102,5 +100,6 @@
 		"commitizen": {
 			"path": "./node_modules/cz-customizable"
 		}
-	}
+	},
+	"engines": { "node": ">=16.0.0" }
 }
